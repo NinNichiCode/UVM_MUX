@@ -19,15 +19,15 @@ class mux_monitor extends uvm_monitor;
 
    virtual task run_phase (uvm_phase phase);
       forever begin 
-         @(posedge vif.clk);
+         @(posedge vif.mon_cb);
 	    trans = mux_item::type_id::create("trans", this);
 
-	      trans.sel = vif.sel;
-	      trans.a = vif.a;
-	      trans.b = vif.b;
-	      trans.c = vif.c;
-	      trans.d = vif.d;
-	      trans.y = vif.y;
+	      trans.sel = vif.mon_cb.sel;
+	      trans.a = vif.mon_cb.a;
+	      trans.b = vif.mon_cb.b;
+	      trans.c = vif.mon_cb.c;
+	      trans.d = vif.mon_cb.d;
+	      trans.y = vif.mon_cb.y;
 `uvm_info("MON", $sformatf("Sent: sel=%0h a=%0h b=%0h c=%0h d=%0h y=%0h", trans.sel, trans.a, trans.b, trans.c, trans.d, trans.y), UVM_MEDIUM)               
 	       item_send_port.write(trans);
         end

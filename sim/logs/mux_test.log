@@ -1,6 +1,6 @@
-# vsim -c top "+UVM_TESTNAME=mux_test" -l logs/mux_test.log -do "run -all; quit -f" 
-# Start time: 13:20:24 on Dec 17,2025
-# ** Note: (vsim-3812) Design is being optimized...
+# vsim -c -coverage top "+UVM_TESTNAME=mux_test" -voptargs="+acc" -l logs/mux_test.log -do "coverage save -onexit cov/mux_test.ucdb; run -all; quit" 
+# Start time: 16:28:54 on Dec 21,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # //  Questa Sim-64
 # //  Version 10.7c win64 Aug 18 2018
 # //
@@ -21,9 +21,12 @@
 # Loading work.mux_pkg(fast)
 # Loading work.top_sv_unit(fast)
 # Loading work.top(fast)
+# Loading work.mux_if(fast)
+# Loading work.mux(fast)
 # Loading mtiUvm.questa_uvm_pkg(fast)
 # Loading D:/questasim_b_install/uvm-1.1d\win64\uvm_dpi.dll
-# run -all
+# coverage save -onexit cov/mux_test.ucdb
+#  run -all
 # ----------------------------------------------------------------
 # UVM-1.1d
 # (C) 2007-2013 Mentor Graphics Corporation
@@ -54,20 +57,22 @@
 # uvm_test_top               mux_test                    -     @471 
 #   env                      mux_env                     -     @478 
 #     agent                  mux_agent                   -     @485 
-#       driver               mux_driver                  -     @594 
-#         rsp_port           uvm_analysis_port           -     @609 
-#         seq_item_port      uvm_seq_item_pull_port      -     @601 
-#       golden               mux_golden                  -     @632 
-#         item_golden_port   uvm_analysis_port           -     @639 
-#       monitor              mux_monitor                 -     @617 
-#         item_send_port     uvm_analysis_port           -     @624 
-#       seqr                 uvm_sequencer               -     @647 
-#         rsp_export         uvm_analysis_export         -     @654 
-#         seq_item_export    uvm_seq_item_pull_imp       -     @748 
+#       driver               mux_driver                  -     @609 
+#         rsp_port           uvm_analysis_port           -     @624 
+#         seq_item_port      uvm_seq_item_pull_port      -     @616 
+#       golden               mux_golden                  -     @647 
+#         item_golden_port   uvm_analysis_port           -     @654 
+#       monitor              mux_monitor                 -     @632 
+#         item_send_port     uvm_analysis_port           -     @639 
+#       seqr                 uvm_sequencer               -     @662 
+#         rsp_export         uvm_analysis_export         -     @669 
+#         seq_item_export    uvm_seq_item_pull_imp       -     @763 
 #         arbitration_queue  array                       0     -    
 #         lock_queue         array                       0     -    
 #         num_last_reqs      integral                    32    'd1  
 #         num_last_rsps      integral                    32    'd1  
+#     cov                    mux_coverage                -     @593 
+#       analysis_imp         uvm_analysis_imp            -     @600 
 #     scoreboard             mux_scoreboard              -     @492 
 #       item_golden_imp      uvm_tlm_analysis_fifo #(T)  -     @546 
 #         analysis_export    uvm_analysis_imp            -     @585 
@@ -113,26 +118,211 @@
 # UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 95000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=4 b=5 c=a d=0 y=a
 # UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 95000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = a >< sel_gol = 2, y_gol = a
 # UVM_INFO ../uvc/env/mux_driver.sv(29) @ 95000: uvm_test_top.env.agent.driver [DRV] a:14  b:7 c:0 d:8 sel:2 y:0
-# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 95000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-# UVM_INFO ../uvc/env/../tests/base_test.sv(43) @ 95000: uvm_test_top [BASE_TEST] ** TEST PASSED **
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 105000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=e b=7 c=0 d=8 y=0
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 105000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = 0 >< sel_gol = 2, y_gol = 0
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 105000: uvm_test_top.env.agent.driver [DRV] a:1  b:0 c:4 d:0 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 115000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=1 b=0 c=4 d=0 y=1
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 115000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = 1 >< sel_gol = 0, y_gol = 1
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 115000: uvm_test_top.env.agent.driver [DRV] a:12  b:8 c:12 d:0 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 125000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=c b=8 c=c d=0 y=c
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 125000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = c >< sel_gol = 2, y_gol = c
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 125000: uvm_test_top.env.agent.driver [DRV] a:7  b:6 c:14 d:3 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 135000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=7 b=6 c=e d=3 y=e
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 135000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = e >< sel_gol = 2, y_gol = e
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 135000: uvm_test_top.env.agent.driver [DRV] a:13  b:8 c:4 d:7 sel:1 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 145000: uvm_test_top.env.agent.monitor [MON] Sent: sel=1 a=d b=8 c=4 d=7 y=8
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 145000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 1, y = 8 >< sel_gol = 1, y_gol = 8
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 145000: uvm_test_top.env.agent.driver [DRV] a:12  b:3 c:7 d:0 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 155000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=c b=3 c=7 d=0 y=7
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 155000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = 7 >< sel_gol = 2, y_gol = 7
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 155000: uvm_test_top.env.agent.driver [DRV] a:0  b:12 c:9 d:10 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 165000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=0 b=c c=9 d=a y=0
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 165000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = 0 >< sel_gol = 0, y_gol = 0
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 165000: uvm_test_top.env.agent.driver [DRV] a:9  b:14 c:12 d:15 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 175000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=9 b=e c=c d=f y=c
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 175000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = c >< sel_gol = 2, y_gol = c
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 175000: uvm_test_top.env.agent.driver [DRV] a:15  b:0 c:3 d:8 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 185000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=f b=0 c=3 d=8 y=8
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 185000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = 8 >< sel_gol = 3, y_gol = 8
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 185000: uvm_test_top.env.agent.driver [DRV] a:4  b:0 c:7 d:2 sel:1 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 195000: uvm_test_top.env.agent.monitor [MON] Sent: sel=1 a=4 b=0 c=7 d=2 y=0
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 195000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 1, y = 0 >< sel_gol = 1, y_gol = 0
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 195000: uvm_test_top.env.agent.driver [DRV] a:1  b:14 c:12 d:7 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 205000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=1 b=e c=c d=7 y=7
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 205000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = 7 >< sel_gol = 3, y_gol = 7
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 205000: uvm_test_top.env.agent.driver [DRV] a:8  b:11 c:3 d:0 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 215000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=8 b=b c=3 d=0 y=3
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 215000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = 3 >< sel_gol = 2, y_gol = 3
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 215000: uvm_test_top.env.agent.driver [DRV] a:11  b:6 c:8 d:1 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 225000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=b b=6 c=8 d=1 y=1
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 225000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = 1 >< sel_gol = 3, y_gol = 1
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 225000: uvm_test_top.env.agent.driver [DRV] a:13  b:5 c:5 d:13 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 235000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=d b=5 c=5 d=d y=d
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 235000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = d >< sel_gol = 0, y_gol = d
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 235000: uvm_test_top.env.agent.driver [DRV] a:8  b:7 c:14 d:6 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 245000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=8 b=7 c=e d=6 y=e
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 245000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = e >< sel_gol = 2, y_gol = e
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 245000: uvm_test_top.env.agent.driver [DRV] a:7  b:12 c:13 d:8 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 255000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=7 b=c c=d d=8 y=7
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 255000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = 7 >< sel_gol = 0, y_gol = 7
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 255000: uvm_test_top.env.agent.driver [DRV] a:9  b:1 c:9 d:2 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 265000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=9 b=1 c=9 d=2 y=9
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 265000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = 9 >< sel_gol = 0, y_gol = 9
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 265000: uvm_test_top.env.agent.driver [DRV] a:8  b:3 c:9 d:1 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 275000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=8 b=3 c=9 d=1 y=8
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 275000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = 8 >< sel_gol = 0, y_gol = 8
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 275000: uvm_test_top.env.agent.driver [DRV] a:8  b:7 c:9 d:15 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 285000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=8 b=7 c=9 d=f y=9
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 285000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = 9 >< sel_gol = 2, y_gol = 9
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 285000: uvm_test_top.env.agent.driver [DRV] a:3  b:12 c:3 d:10 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 295000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=3 b=c c=3 d=a y=3
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 295000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = 3 >< sel_gol = 0, y_gol = 3
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 295000: uvm_test_top.env.agent.driver [DRV] a:12  b:12 c:13 d:2 sel:1 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 305000: uvm_test_top.env.agent.monitor [MON] Sent: sel=1 a=c b=c c=d d=2 y=c
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 305000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 1, y = c >< sel_gol = 1, y_gol = c
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 305000: uvm_test_top.env.agent.driver [DRV] a:11  b:1 c:13 d:4 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 315000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=b b=1 c=d d=4 y=4
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 315000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = 4 >< sel_gol = 3, y_gol = 4
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 315000: uvm_test_top.env.agent.driver [DRV] a:13  b:8 c:11 d:0 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 325000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=d b=8 c=b d=0 y=b
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 325000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = b >< sel_gol = 2, y_gol = b
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 325000: uvm_test_top.env.agent.driver [DRV] a:7  b:7 c:11 d:1 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 335000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=7 b=7 c=b d=1 y=b
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 335000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = b >< sel_gol = 2, y_gol = b
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 335000: uvm_test_top.env.agent.driver [DRV] a:12  b:13 c:13 d:6 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 345000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=c b=d c=d d=6 y=c
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 345000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = c >< sel_gol = 0, y_gol = c
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 345000: uvm_test_top.env.agent.driver [DRV] a:1  b:2 c:11 d:7 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 355000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=1 b=2 c=b d=7 y=7
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 355000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = 7 >< sel_gol = 3, y_gol = 7
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 355000: uvm_test_top.env.agent.driver [DRV] a:3  b:0 c:14 d:13 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 365000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=3 b=0 c=e d=d y=d
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 365000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = d >< sel_gol = 3, y_gol = d
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 365000: uvm_test_top.env.agent.driver [DRV] a:12  b:12 c:5 d:11 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 375000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=c b=c c=5 d=b y=c
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 375000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = c >< sel_gol = 0, y_gol = c
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 375000: uvm_test_top.env.agent.driver [DRV] a:13  b:14 c:8 d:12 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 385000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=d b=e c=8 d=c y=c
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 385000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = c >< sel_gol = 3, y_gol = c
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 385000: uvm_test_top.env.agent.driver [DRV] a:8  b:14 c:0 d:10 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 395000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=8 b=e c=0 d=a y=8
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 395000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = 8 >< sel_gol = 0, y_gol = 8
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 395000: uvm_test_top.env.agent.driver [DRV] a:14  b:2 c:0 d:15 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 405000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=e b=2 c=0 d=f y=f
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 405000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = f >< sel_gol = 3, y_gol = f
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 405000: uvm_test_top.env.agent.driver [DRV] a:7  b:15 c:1 d:15 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 415000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=7 b=f c=1 d=f y=1
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 415000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = 1 >< sel_gol = 2, y_gol = 1
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 415000: uvm_test_top.env.agent.driver [DRV] a:5  b:3 c:8 d:6 sel:1 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 425000: uvm_test_top.env.agent.monitor [MON] Sent: sel=1 a=5 b=3 c=8 d=6 y=3
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 425000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 1, y = 3 >< sel_gol = 1, y_gol = 3
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 425000: uvm_test_top.env.agent.driver [DRV] a:11  b:2 c:2 d:4 sel:1 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 435000: uvm_test_top.env.agent.monitor [MON] Sent: sel=1 a=b b=2 c=2 d=4 y=2
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 435000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 1, y = 2 >< sel_gol = 1, y_gol = 2
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 435000: uvm_test_top.env.agent.driver [DRV] a:2  b:9 c:5 d:1 sel:1 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 445000: uvm_test_top.env.agent.monitor [MON] Sent: sel=1 a=2 b=9 c=5 d=1 y=9
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 445000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 1, y = 9 >< sel_gol = 1, y_gol = 9
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 445000: uvm_test_top.env.agent.driver [DRV] a:11  b:13 c:12 d:1 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 455000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=b b=d c=c d=1 y=1
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 455000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = 1 >< sel_gol = 3, y_gol = 1
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 455000: uvm_test_top.env.agent.driver [DRV] a:0  b:5 c:3 d:1 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 465000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=0 b=5 c=3 d=1 y=3
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 465000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = 3 >< sel_gol = 2, y_gol = 3
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 465000: uvm_test_top.env.agent.driver [DRV] a:14  b:11 c:3 d:5 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 475000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=e b=b c=3 d=5 y=5
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 475000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = 5 >< sel_gol = 3, y_gol = 5
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 475000: uvm_test_top.env.agent.driver [DRV] a:5  b:8 c:9 d:7 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 485000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=5 b=8 c=9 d=7 y=7
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 485000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = 7 >< sel_gol = 3, y_gol = 7
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 485000: uvm_test_top.env.agent.driver [DRV] a:1  b:5 c:7 d:3 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 495000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=1 b=5 c=7 d=3 y=1
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 495000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = 1 >< sel_gol = 0, y_gol = 1
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 495000: uvm_test_top.env.agent.driver [DRV] a:1  b:2 c:8 d:12 sel:1 y:0
+# ================ =================
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 505000: uvm_test_top.env.agent.monitor [MON] Sent: sel=1 a=1 b=2 c=8 d=c y=2
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 505000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 1, y = 2 >< sel_gol = 1, y_gol = 2
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 505000: uvm_test_top.env.agent.driver [DRV] a:4  b:1 c:10 d:1 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 515000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=4 b=1 c=a d=1 y=4
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 515000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = 4 >< sel_gol = 0, y_gol = 4
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 515000: uvm_test_top.env.agent.driver [DRV] a:13  b:15 c:3 d:4 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 525000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=d b=f c=3 d=4 y=d
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 525000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = d >< sel_gol = 0, y_gol = d
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 525000: uvm_test_top.env.agent.driver [DRV] a:8  b:0 c:2 d:4 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 535000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=8 b=0 c=2 d=4 y=8
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 535000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = 8 >< sel_gol = 0, y_gol = 8
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 535000: uvm_test_top.env.agent.driver [DRV] a:7  b:14 c:3 d:5 sel:0 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 545000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=7 b=e c=3 d=5 y=7
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 545000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = 7 >< sel_gol = 0, y_gol = 7
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 545000: uvm_test_top.env.agent.driver [DRV] a:4  b:5 c:1 d:6 sel:0 y:0
+# ================ =================
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 555000: uvm_test_top.env.agent.monitor [MON] Sent: sel=0 a=4 b=5 c=1 d=6 y=4
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 555000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 0, y = 4 >< sel_gol = 0, y_gol = 4
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 555000: uvm_test_top.env.agent.driver [DRV] a:4  b:8 c:11 d:6 sel:1 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 565000: uvm_test_top.env.agent.monitor [MON] Sent: sel=1 a=4 b=8 c=b d=6 y=8
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 565000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 1, y = 8 >< sel_gol = 1, y_gol = 8
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 565000: uvm_test_top.env.agent.driver [DRV] a:14  b:1 c:9 d:10 sel:1 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 575000: uvm_test_top.env.agent.monitor [MON] Sent: sel=1 a=e b=1 c=9 d=a y=1
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 575000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 1, y = 1 >< sel_gol = 1, y_gol = 1
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 575000: uvm_test_top.env.agent.driver [DRV] a:10  b:0 c:11 d:15 sel:1 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 585000: uvm_test_top.env.agent.monitor [MON] Sent: sel=1 a=a b=0 c=b d=f y=0
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 585000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 1, y = 0 >< sel_gol = 1, y_gol = 0
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 585000: uvm_test_top.env.agent.driver [DRV] a:12  b:9 c:15 d:1 sel:1 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 595000: uvm_test_top.env.agent.monitor [MON] Sent: sel=1 a=c b=9 c=f d=1 y=9
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 595000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 1, y = 9 >< sel_gol = 1, y_gol = 9
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 595000: uvm_test_top.env.agent.driver [DRV] a:3  b:8 c:13 d:3 sel:1 y:0
+# ================ =================
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 605000: uvm_test_top.env.agent.monitor [MON] Sent: sel=1 a=3 b=8 c=d d=3 y=8
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 605000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 1, y = 8 >< sel_gol = 1, y_gol = 8
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 605000: uvm_test_top.env.agent.driver [DRV] a:7  b:1 c:9 d:8 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 615000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=7 b=1 c=9 d=8 y=9
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 615000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = 9 >< sel_gol = 2, y_gol = 9
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 615000: uvm_test_top.env.agent.driver [DRV] a:6  b:0 c:1 d:3 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 625000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=6 b=0 c=1 d=3 y=1
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 625000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = 1 >< sel_gol = 2, y_gol = 1
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 625000: uvm_test_top.env.agent.driver [DRV] a:7  b:15 c:12 d:4 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 635000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=7 b=f c=c d=4 y=c
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 635000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = c >< sel_gol = 2, y_gol = c
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 635000: uvm_test_top.env.agent.driver [DRV] a:1  b:13 c:5 d:1 sel:2 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 645000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=1 b=d c=5 d=1 y=5
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 645000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = 5 >< sel_gol = 2, y_gol = 5
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 645000: uvm_test_top.env.agent.driver [DRV] a:3  b:7 c:5 d:15 sel:2 y:0
+# ================ =================
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 655000: uvm_test_top.env.agent.monitor [MON] Sent: sel=2 a=3 b=7 c=5 d=f y=5
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 655000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 2, y = 5 >< sel_gol = 2, y_gol = 5
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 655000: uvm_test_top.env.agent.driver [DRV] a:9  b:13 c:0 d:15 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 665000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=9 b=d c=0 d=f y=f
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 665000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = f >< sel_gol = 3, y_gol = f
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 665000: uvm_test_top.env.agent.driver [DRV] a:7  b:14 c:0 d:15 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 675000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=7 b=e c=0 d=f y=f
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 675000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = f >< sel_gol = 3, y_gol = f
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 675000: uvm_test_top.env.agent.driver [DRV] a:6  b:9 c:10 d:15 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 685000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=6 b=9 c=a d=f y=f
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 685000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = f >< sel_gol = 3, y_gol = f
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 685000: uvm_test_top.env.agent.driver [DRV] a:14  b:3 c:1 d:15 sel:3 y:0
+# UVM_INFO ../uvc/env/mux_monitor.sv(31) @ 695000: uvm_test_top.env.agent.monitor [MON] Sent: sel=3 a=e b=3 c=1 d=f y=f
+# UVM_INFO ../uvc/env/mux_scoreboard.sv(28) @ 695000: uvm_test_top.env.scoreboard [SB]  Passed | sel = 3, y = f >< sel_gol = 3, y_gol = f
+# UVM_INFO ../uvc/env/mux_driver.sv(29) @ 695000: uvm_test_top.env.agent.driver [DRV] a:5  b:6 c:6 d:15 sel:3 y:0
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 695000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../uvc/env/../tests/base_test.sv(43) @ 695000: uvm_test_top [BASE_TEST] ** TEST PASSED **
 # 
 # --- UVM Report Summary ---
 # 
 # ** Report counts by severity
-# UVM_INFO :   36
+# UVM_INFO :  216
 # UVM_WARNING :    0
 # UVM_ERROR :    0
 # UVM_FATAL :    0
 # ** Report counts by id
 # [BASE_TEST]     1
-# [DRV]    10
-# [MON]    10
+# [DRV]    70
+# [MON]    70
 # [Questa UVM]     2
 # [RNTST]     1
-# [SB]    10
+# [SB]    70
 # [TEST_DONE]     1
 # [UVMTOP]     1
 # ** Note: $finish    : D:/questasim_b_install/win64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
-#    Time: 95 ns  Iteration: 66  Instance: /top
-# End time: 13:20:32 on Dec 17,2025, Elapsed time: 0:00:08
+#    Time: 695 ns  Iteration: 66  Instance: /top
+# Saving coverage database on exit...
+# End time: 16:29:03 on Dec 21,2025, Elapsed time: 0:00:09
 # Errors: 0, Warnings: 0

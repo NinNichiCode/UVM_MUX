@@ -1,0 +1,7 @@
+var g_data = {
+g914:[{dummy:0},
+{name:'cov_inst',f:1,type:1,id:919,tb:'48',h:'48',m:'0',hp:'100.00%',cov:['100.00%','G'],g:'100.00%',gp:['100.00%','G'],parent:'914'},
+{name:'\\/mux_pkg::mux_coverage::cov_inst ',f:1,type:2,id:931,tb:'48',h:'48',m:'0',hp:'100.00%',cov:['100.00%','G'],g:'100.00%',gp:['100.00%','G'],cvg:'cov_inst',parent:'919'}],
+dummyEnd:0
+};
+processCovergroupsData(g_data);

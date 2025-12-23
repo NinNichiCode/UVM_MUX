@@ -12,14 +12,38 @@ class mux_seq extends uvm_sequence#(mux_item);
    //   mux_item req;
       req = mux_item::type_id::create("req");
 
-      repeat(10) begin
-
+      repeat(50) begin
       `uvm_do(req)
-
-//      start_item(req); 
- //       req.sel = 2'b01;
- //     finish_item(req);
      end
+       $display ("================ =================");
+       repeat(5) begin
+         `uvm_do_with (req, {
+            sel == 2'b00;
+         });
+       end
+
+       $display ("================ =================");
+       repeat(5) begin
+         `uvm_do_with (req, {
+            sel == 2'b01;
+         });
+       end
+
+        $display ("================ =================");
+       repeat(5) begin
+         `uvm_do_with (req, {
+            sel == 2'b10;
+         });
+       end
+
+      $display ("================ =================");
+
+       repeat(5) begin
+         `uvm_do_with (req, {
+            sel == 2'b11;
+            d == 4'hf;
+         });
+       end
    endtask
 
 endclass

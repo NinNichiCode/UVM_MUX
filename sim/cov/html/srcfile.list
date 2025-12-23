@@ -1,0 +1,12 @@
+..//mux.v
+../tb/mux_if.sv
+../tb/top.sv
+../uvc/env/../seq/mux_item.sv
+../uvc/env/../seq/mux_seq.sv
+../uvc/env/../tests/base_test.sv
+../uvc/env/mux_coverage.sv
+../uvc/env/mux_driver.sv
+../uvc/env/mux_golden.sv
+../uvc/env/mux_monitor.sv
+../uvc/env/mux_pkg.sv
+../uvc/env/mux_scoreboard.sv
