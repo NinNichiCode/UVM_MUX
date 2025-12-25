@@ -16,8 +16,8 @@ compile:
 	vlib $(LIB)  
 	vmap work $(LIB) 
 	vlog -work work -sv -cover bcetf $(TB_DIR)/mux_if.sv $(RTL_DIR)/mux.v  
-	vlog -work work -sv -cover bcetf $(INCDIRS) $(UVC_DIR)/env/mux_pkg.sv 
-	vlog -work work -sv -cover bcetf $(TB_DIR)/top.sv
+	vlog -work work -sv $(INCDIRS) $(UVC_DIR)/env/mux_pkg.sv 
+	vlog -work work -sv $(TB_DIR)/top.sv
 
 regress:
 	@echo "Running simulation..."
@@ -25,7 +25,7 @@ regress:
 	@mkdir -p cov
 	@for t in $(TESTS); do \
 	vsim -c -coverage top +UVM_TESTNAME=$$t \
-	-voptargs="+acc" \
+	-voptargs="+acc" -assertdebug \
 	-l logs/$$t.log -do "coverage save -onexit cov/$$t.ucdb; run -all; quit";  \
 	done
 
@@ -44,8 +44,15 @@ summary:
 	@echo "FAIL"
 	@grep -L "TEST PASSED" logs/*.log | sed 's#.*/##'
 
+wave:
+	@echo "Launching GUI with all signals..."
+	vsim -gui top \
+	     +UVM_TESTNAME=$(TEST) \
+	     -voptargs="+acc" \
+	     -do "add wave -r /*; run -all"
+
 clean:
 	@echo "Cleaning up..."
 	rm -rf $(LIB) transcript logs cov *.log modelsim.ini 
 
-.PHONY: all compile regress coverage summary clean
+.PHONY: all compile regress coverage summary clean wave

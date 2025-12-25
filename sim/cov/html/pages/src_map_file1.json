@@ -1,13 +1,6 @@
 var g_data = {'dummy':null,
 '2':'..//mux.v',
-'12':'../tb/mux_if.sv',
+'5':'../tb/mux_if.sv',
 '1':'../tb/top.sv',
-'3':'../uvc/env/../seq/mux_item.sv',
-'9':'../uvc/env/../seq/mux_seq.sv',
-'10':'../uvc/env/../tests/base_test.sv',
-'8':'../uvc/env/mux_coverage.sv',
-'4':'../uvc/env/mux_driver.sv',
-'6':'../uvc/env/mux_golden.sv',
-'5':'../uvc/env/mux_monitor.sv',
-'11':'../uvc/env/mux_pkg.sv',
-'7':'../uvc/env/mux_scoreboard.sv'};
+'3':'../uvc/env/mux_coverage.sv',
+'4':'../uvc/env/mux_pkg.sv'};

@@ -44,6 +44,7 @@ class mux_seq extends uvm_sequence#(mux_item);
             d == 4'hf;
          });
        end
+       
    endtask
 
 endclass
